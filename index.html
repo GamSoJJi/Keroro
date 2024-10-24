@@ -1,67 +1,72 @@
 <!DOCTYPE html>
 <html lang="en-us">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity Web Player | Keroro</title>
-    <style>
-      html, body {
-          height: 100%;
-          margin: 0;
-          padding: 0;
-          overflow: hidden;
-          align-content: center;
-          background-color: #bff19a;
-      }
-    </style>
-  </head>
-  <body style="text-align: center; padding: 0; border: 0; margin: 0;">
-    <canvas id="unity-canvas" width=900 height=1200 tabindex="-1" style="width: 900px; height: 1200px; background: #231F20"></canvas>
-    <script src="Build/241024.loader.js"></script>
-    <script>
-if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
-    // Mobile device style: fill the whole browser client area with the game canvas:
-    var meta = document.createElement('meta');
-    meta.name = 'viewport';
-    meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
-    document.getElementsByTagName('head')[0].appendChild(meta);
 
-    // Create a wrapper div for centering the canvas
-    var wrapper = document.createElement('div');
-    wrapper.style.position = 'fixed';
-    wrapper.style.top = '50%';
-    wrapper.style.left = '50%';
-    wrapper.style.transform = 'translate(-50%, -50%)';
-    wrapper.style.width = '900px'; // 캔버스 크기 설정
-    wrapper.style.height = '1200px'; // 캔버스 크기 설정
-    wrapper.style.backgroundColor = 'black'; // 배경색 설정 (선택사항)
-    wrapper.style.boxShadow = '0 0 10px rgba(0,0,0,0.5)'; // 그림자 효과 (선택사항)
-    wrapper.style.zIndex = '1000'; // 다른 요소들 위에 표시되도록 설정
-    document.body.appendChild(wrapper);
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Unity Web Player | Keroro</title>
+  <style>
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      align-content: center;
+      background-color: #bff19a;
+    }
+  </style>
+</head>
 
-    var canvas = document.querySelector("#unity-canvas");
-    canvas.style.width = "900px"; // px 단위로 설정
-    canvas.style.height = "1200px"; // px 단위로 설정
-    canvas.style.position = "absolute"; // wrapper 안에서 절대 위치
-    canvas.style.top = "0"; // wrapper의 상단에 위치
-    canvas.style.left = "0"; // wrapper의 왼쪽에 위치
+<body style="text-align: center; padding: 0; border: 0; margin: 0;">
+  <canvas id="unity-canvas" width=900 height=1200 tabindex="-1"
+    style="width: 900px; height: 1200px; background: #231F20"></canvas>
+  <script src="Build/241024.loader.js"></script>
+  <script>
+    if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+      // Mobile device style: fill the whole browser client area with the game canvas:
+      var meta = document.createElement('meta');
+      meta.name = 'viewport';
+      meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
+      document.getElementsByTagName('head')[0].appendChild(meta);
 
-    document.body.style.textAlign = "left"; // 필요시 텍스트 정
+      // Create a wrapper div for centering the canvas
+      var wrapper = document.createElement('div');
+      wrapper.style.position = 'fixed';
+      wrapper.style.top = '50%';
+      wrapper.style.left = '50%';
+      wrapper.style.transform = 'translate(-50%, -50%)';
+      wrapper.style.width = '900px'; // 캔버스 크기 설정
+      wrapper.style.height = '1200px'; // 캔버스 크기 설정
+      wrapper.style.backgroundColor = 'black'; // 배경색 설정 (선택사항)
+      wrapper.style.boxShadow = '0 0 10px rgba(0,0,0,0.5)'; // 그림자 효과 (선택사항)
+      wrapper.style.zIndex = '1000'; // 다른 요소들 위에 표시되도록 설정
+      document.body.appendChild(wrapper);
 
+      var canvas = document.querySelector("#unity-canvas");
+      canvas.style.width = "900px"; // px 단위로 설정
+      canvas.style.height = "1200px"; // px 단위로 설정
+      canvas.style.position = "absolute"; // wrapper 안에서 절대 위치
+      canvas.style.top = "0"; // wrapper의 상단에 위치
+      canvas.style.left = "0"; // wrapper의 왼쪽에 위치ß
 
+      document.body.style.textAlign = "left"; // 필요시 텍스트 정
 
-      createUnityInstance(document.querySelector("#unity-canvas"), {
-        arguments: [],
-        dataUrl: "Build/241024.data.unityweb",
-        frameworkUrl: "Build/241024.framework.js.unityweb",
-        codeUrl: "Build/241024.wasm.unityweb",
-        streamingAssetsUrl: "StreamingAssets",
-        companyName: "DefaultCompany",
-        productName: "Keroro",
-        productVersion: "1.0",
-        // matchWebGLToCanvasSize: false, // Uncomment this to separately control WebGL canvas render size and DOM element size.
-        // devicePixelRatio: 1, // Uncomment this to override low DPI rendering on high DPI displays.
-      });
-    </script>
-  </body>
+    }
+
+    createUnityInstance(document.querySelector("#unity-canvas"), {
+      arguments: [],
+      dataUrl: "Build/241024.data.unityweb",
+      frameworkUrl: "Build/241024.framework.js.unityweb",
+      codeUrl: "Build/241024.wasm.unityweb",
+      streamingAssetsUrl: "StreamingAssets",
+      companyName: "DefaultCompany",
+      productName: "Keroro",
+      productVersion: "1.0",
+      // matchWebGLToCanvasSize: false, // Uncomment this to separately control WebGL canvas render size and DOM element size.
+      // devicePixelRatio: 1, // Uncomment this to override low DPI rendering on high DPI displays.
+    });
+  </script>
+</body>
+
 </html>
