@@ -9,7 +9,9 @@
           height: 100%;
           margin: 0;
           padding: 0;
-          overflow: hidden; /* 스크롤바 제거 */
+          overflow: hidden;
+          align-content: center;
+          background-color: #bff19a;
       }
     </style>
   </head>
@@ -17,20 +19,36 @@
     <canvas id="unity-canvas" width=900 height=1200 tabindex="-1" style="width: 900px; height: 1200px; background: #231F20"></canvas>
     <script src="Build/241024.loader.js"></script>
     <script>
-      if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
-        // Mobile device style: fill the whole browser client area with the game canvas:
-        // var meta = document.createElement('meta');
-        // meta.name = 'viewport';
-        // meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
-        // document.getElementsByTagName('head')[0].appendChild(meta);
+if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+    // Mobile device style: fill the whole browser client area with the game canvas:
+    var meta = document.createElement('meta');
+    meta.name = 'viewport';
+    meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
+    document.getElementsByTagName('head')[0].appendChild(meta);
 
-        var canvas = document.querySelector("#unity-canvas");
-        canvas.style.width = "900";
-        canvas.style.height = "1200";
-        canvas.style.position = "fixed";
+    // Create a wrapper div for centering the canvas
+    var wrapper = document.createElement('div');
+    wrapper.style.position = 'fixed';
+    wrapper.style.top = '50%';
+    wrapper.style.left = '50%';
+    wrapper.style.transform = 'translate(-50%, -50%)';
+    wrapper.style.width = '900px'; // 캔버스 크기 설정
+    wrapper.style.height = '1200px'; // 캔버스 크기 설정
+    wrapper.style.backgroundColor = 'black'; // 배경색 설정 (선택사항)
+    wrapper.style.boxShadow = '0 0 10px rgba(0,0,0,0.5)'; // 그림자 효과 (선택사항)
+    wrapper.style.zIndex = '1000'; // 다른 요소들 위에 표시되도록 설정
+    document.body.appendChild(wrapper);
 
-        document.body.style.textAlign = "left";
-      }
+    var canvas = document.querySelector("#unity-canvas");
+    canvas.style.width = "900px"; // px 단위로 설정
+    canvas.style.height = "1200px"; // px 단위로 설정
+    canvas.style.position = "absolute"; // wrapper 안에서 절대 위치
+    canvas.style.top = "0"; // wrapper의 상단에 위치
+    canvas.style.left = "0"; // wrapper의 왼쪽에 위치
+
+    document.body.style.textAlign = "left"; // 필요시 텍스트 정
+
+
 
       createUnityInstance(document.querySelector("#unity-canvas"), {
         arguments: [],
